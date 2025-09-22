@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card shadow-lg p-4" style="max-width: 450px; width: 100%; border-radius: 15px;">
+    
+    <h2 class="text-center mb-4">🔑 Reset Password</h2>
+
+    {% if old_pass_notmatched %}
+      <div class="alert alert-danger text-center">
+        Entered wrong old password! Please try again.
+      </div>
+    {% endif %}
+    
+    {% if confirm_notmatched %}
+      <div class="alert alert-warning text-center">
+        Entered new password is not matching! Please try again.
+      </div>
+    {% endif %}
+
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      {% if old_pass_matched %}
+        <div class="mb-3">
+          <label for="newpassword" class="form-label">Enter New Password</label>
+          <input type="password" name="newpassword" id="newpassword" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmpassword" class="form-label">Confirm New Password</label>
+          <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" required>
+        </div>
+
+      {% else %}
+        <div class="mb-3">
+          <label for="oldpassword" class="form-label">Enter Old Password</label>
+          <input type="password" name="oldpassword" id="oldpassword" class="form-control" required>
+        </div>
+      {% endif %}
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">🔄 Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

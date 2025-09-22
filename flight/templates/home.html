@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="stop()" onmouseout="start()">
+    {{ news }}
+</marquee>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="booking-form shadow-lg p-4 w-100" 
+     style="max-width: 900px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 15px;">
+
+        <form method="get" action="{% url 'home' %}">
+            <h2 class="text-center mb-4">Search Flights</h2>
+
+            <!-- First Row: From / To -->
+            <div class="row g-3 align-items-center justify-content-center">
+                <!-- From -->
+                <div class="col-md-4">
+                    <input type="text" name="from" class="form-control" placeholder="From (City/Airport)"
+                        value="{{ request.GET.from }}">
+                </div>
+
+                <!-- Arrow -->
+                <div class="col-md-1 text-center">
+                    <span class="fw-bold fs-4">&#11136;</span>
+                </div>
+
+                <!-- To -->
+                <div class="col-md-4">
+                    <input type="text" name="to" class="form-control" placeholder="To (City/Airport)"
+                        value="{{ request.GET.to }}">
+                </div>
+            </div>
+
+            <!-- Submit Button (Second Row) -->
+            <div class="row mt-4">
+                <div class="col-md-3 mx-auto">
+                    <button type="submit" class="btn btn-success w-100">Search</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+<div class="container mt-1 content-wrapper">
+
+    <h2 class="text-center mb-4 text-white">Available Flights</h2>
+
+    <div class="row justify-content-center">
+        {% for flight in flights %}
+        <div class="col-12 col-lg-6 mb-3">
+            <div class="card px-3 py-2 shadow border-1" style="border-radius: 12px;">
+                <div class="row g-2 align-items-center">
+
+                    <div class="col-6 border-end pe-3">
+                        <h5 class="fw-bold text-dark mb-1">{{ flight.flight_company }}</h5>
+                        <p class="mb-1"><strong>Flight:</strong> {{ flight.flight_name }} | {{ flight.flight_number }}
+                        </p>
+                        <p class="mb-1"><strong>Date:</strong> {{ flight.flight_date }}</p>
+                        <p class="mb-0"><strong>Time:</strong> {{ flight.flight_departure_time }}</p>
+                    </div>
+
+                    <div class="col-6 ps-3">
+                        <p class="mb-1"><strong>From:</strong> {{ flight.flight_from }}</p>
+                        <p class="mb-1"><strong>To:</strong> {{ flight.flight_to }}</p>
+                        <p class="mb-2"><strong>Price:</strong> ₹{{ flight.flight_ticket_price }}</p>
+                        <a href="{% url 'book_flight' flight.id %}" class="btn btn-success btn-sm">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-danger text-center fw-bold">No flights available for your search.</p>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h2 class="mb-4 text-center text-white mt-4">Booking History (Cancelled Bookings)</h2>
+
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        {% for booking in cancelled_bookings %}
+        <div class="col-md-6 col-12">
+            <div class="card shadow p-3 h-100 border-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-danger mb-3">
+                        {{ booking.flight_name.flight_name }} {{ booking.flight_name.flight_number }}
+                    </h5>
+                    <p><strong>Name:</strong> {{ booking.name }}</p>
+                    <p><strong>Age:</strong> {{ booking.age }}</p>
+                    <p><strong>Email:</strong> {{ booking.email }}</p>
+                    <p><strong>Phone:</strong> {{ booking.phno }}</p>
+                    <p><strong>Booking Date & Time:</strong> {{ booking.booking_date }}</p>
+                    <p><strong>Status:</strong> 
+                        <span class="badge bg-danger">{{ booking.status }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No cancelled bookings found.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

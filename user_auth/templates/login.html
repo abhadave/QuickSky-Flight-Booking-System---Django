@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Login Here</h2>
+
+                    {% if wrong_credentials %}
+                    <div class="alert alert-danger text-center">
+                        Enter the right crendentials!.
+                    </div>
+                    {% endif %}
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter password">
+                        </div>
+
+                        <div class="d-grid">
+                            <input type="submit" class="btn btn-primary" value="login">
+                        </div>
+                    </form>
+                    <h5 class="mt-3 text-center">
+                        Your account is not there? 
+                        <a href="{% url 'register' %}">Register here</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

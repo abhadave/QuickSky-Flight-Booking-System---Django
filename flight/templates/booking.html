@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+
+        <!-- Left Column: Booking Form -->
+        <div class="col-md-7">
+            <div class="card shadow p-4 rounded-4">
+                <h2 class="card-title text-center mb-4 text-danger">Add Your Details</h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <!-- Flight Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Flight Name</label>
+                        <input type="text" name="flight_name"
+                            value="{{ flight.flight_name }} {{ flight.flight_number }}" readonly class="form-control">
+                    </div>
+
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-3">
+                        <label for="phno" class="form-label">Phone No.</label>
+                        <input type="number" name="phno" id="phno" class="form-control" required>
+                    </div>
+
+                    <!-- Age -->
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" name="age" id="age" class="form-control" required>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select name="gender" id="gender" class="form-select" required>
+                            <option value="" selected disabled>-- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="mb-3">
+                        <label for="booking_date" class="form-label">Booking Date & Time</label>
+                        <input type="datetime-local" name="booking_date" id="booking_date" class="form-control"
+                            required>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn" style="background-color: rgb(225, 91, 113); color: white;">
+                            Proceed To Pay
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Column: Fare Summary & Coupon -->
+        <div class="col-md-4 mt-4 mt-md-0">
+            <!-- Fare Summary -->
+            <div class="card shadow p-3 mb-3 rounded-4">
+                <h5 class="text-danger">Fare Summary</h5>
+                <div class="d-flex justify-content-between">
+                    <span>Base Fare:</span>
+                    <span>₹ {{ flight.flight_ticket_price }}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Fee & Surcharges:</span>
+                    <span>₹ 100</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between fw-bold">
+                    <span>Total Fare:</span>
+                    <span>₹ {{ flight.flight_ticket_price|add:"100" }}</span>
+                </div>
+            </div>
+
+            <!-- Coupon Code -->
+            <div class="card shadow p-3 rounded-4">
+                <h6 class="text-danger">Have a coupon code?</h6>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="COUPON CODE">
+                    <button class="btn" style="background-color: rgb(225, 91, 113);color: white;">Apply</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

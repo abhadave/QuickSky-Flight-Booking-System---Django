@@ -1,0 +1,126 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <title>Flight_system</title>
+
+  <style>
+    .background-image {
+      background: url("https://images.unsplash.com/photo-1648664619887-00aa821a1c94?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat center center/cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      filter: blur(2px);
+      margin: 0;
+      z-index: -1;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      padding-top: 80px;
+    }
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar links color (white for visibility on image) */
+    .navbar .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .navbar .nav-link:hover {
+      color: #0DCAF0 !important;
+      /* cyan hover */
+    }
+
+    /* Active link styling */
+    .navbar .active a {
+      color: #0DCAF0 !important;
+      border-bottom: 2px solid #0DCAF0;
+      background: transparent !important;
+      border-radius: 0;
+    }
+
+    marquee {
+      background: linear-gradient(to right, #ff4500, #ff6347, #ffa500);
+      /* warm orange-red */
+      color: white;
+      /* white text for best contrast */
+      font-weight: bold;
+      font-size: 18px;
+      padding: 8px 15px;
+      border-bottom: 2px solid #fff;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      /* glow for readability */
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* Hover effect */
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 1050;
+      /* higher than marquee */
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1060;
+      /* above navbar + marquee */
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="background-image">
+  </div>
+  {% include "nav.html" %}
+  {% block content %}
+  {% endblock %}
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

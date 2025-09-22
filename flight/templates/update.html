@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100 ">
+    <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
+        <h2 class="card-title text-center mb-4 text-primary">Flight Booking</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Flight Name</label>
+                <input type="text"  value="{{ update_booking.flight_name }} {{ update_booking.flight_name.flight_number }}" readonly class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ update_booking.name }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" value="{{ update_booking.email }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phno" class="form-label">Phone No.</label>
+                <input type="number" name="phno" id="phno" class="form-control" value="{{ update_booking.phno }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" name="age" id="age" class="form-control" value="{{ update_booking.age }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="booking_date" class="form-label">Booking Date & Time</label>
+                <input type="datetime-local" name="booking_date" id="booking_date" class="form-control" value="{{ update_booking.booking_date|date:'Y-m-d\\TH:i' }}" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
